@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1>Personas</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <h4>All Personas</h4>
+    <hr>
+    <div ng-repeat="persona in personas">
+      <h3>{{ persona.name }} <small>{{ persona.role }}</small></h3>
+      <p>{{ persona.description }}</p>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <h4>Create a New Persona</h4>
+    <hr>
+    <form ng-submit="submitPersona()">
+      <label>First &amp; Last Name:</label> <br>
+      <input type="text" class="form-control" ng-model="persona.name" placeholder="First and Last Name"> <br>
+      <label>Choose a Product:</label> <br>
+      <select ng-model="persona.product" ng-options="product.name for product in products" class="form-control" placeholder="Choose a Product"></select> <br>
+      <label>What's {{ persona.name }}'s Role?</label>
+      <input type="text" class="form-control" ng-model="persona.role" placeholder="User">
+      <label>Persona Description:</label> <br>
+      <input type="textarea" class="form-control" ng-model="persona.description" placeholder="Describe {{ persona.name }}"> <br>
+      <input type="submit" class="btn btn-primary" value="Save Persona"> <br><br>
+    </form>
+  </div>
+</div>

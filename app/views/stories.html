@@ -1,0 +1,68 @@
+<h1>User Stories</h1>
+<div class="row">
+  <div class="col-lg-6">
+    <h4>All Stories</h4>
+    <hr>  
+
+    <div class="row">
+      <div class="col-lg-12 filterable" ng-repeat="story in stories | orderBy:sorter">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+                {{ story.product.productCode}} | {{ story.title }}
+            </h3>
+            <span><a ng-click="deleteStory(story)"><span class="glyphicon glyphicon-trash deleteIcon"></span></a></span>
+          </div>
+          <div class="panel-body">
+            <p>As {{ story.persona.name }} (a {{ story.persona.role }}), I want {{ story.want }} so that {{ story.so }}.</p>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-lg-4"><strong>PRIORITY: {{ story.impact * story.evidence }}</strong></div>
+              <div class="col-lg-4"><small>
+                Impact:  {{ story.impact }} |
+                Evidence: {{ story.evidence }}
+              </small></div>
+              <div class="col-lg-4">
+                <small>For:</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <h4>Add Story</h4>
+    <hr>
+    <form ng-submit="submitStory()">
+      <label for="">Choose a Product:</label>
+      <select ng-model="story.product" class="form-control" ng-options="product.name for product in products"></select><br>
+      <label for="">Title:</label>
+      <input type="text" ng-model="story.title" class="form-control" placeholder="Short Title"> <br>
+      <label for="">As:</label>
+      <select ng-model="story.persona" class="form-control" ng-options="persona.name for persona in personas"></select><br>
+      <!-- <input type="text" ng-model="story.as" class="form-control" placeholder="user"> <br> -->
+      <label for="">I want:</label>
+      <input type="text" ng-model="story.want" class="form-control" placeholder="to search"> <br>
+      <label for="">So that:</label>
+      <input type="text" ng-model="story.so" class="form-control" placeholder="I can..."> <br>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            User Story Preview:
+          </h4>
+        </div>
+        <div class="panel-body">
+          <p>As {{ story.persona.name }} (a {{ story.persona.role }}), I want {{ story.want }} so that {{ story.so }}.</p>
+        </div>
+      </div>
+      <label for="">Impact (1-5):</label>
+      <input type="number" ng-model="story.impact" class="form-control" placeholder="4"> <br>
+      <label for="">Evidence (0-4):</label>
+      <input type="number" ng-model="story.evidence" class="form-control" placeholder="3"> <br>
+      <input type="submit" class="btn btn-primary" value="Save Story">
+    </form>
+    <br>
+  </div>
+</div>
